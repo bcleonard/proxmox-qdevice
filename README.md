@@ -28,11 +28,11 @@ Modify the docker-compose.yml file.   Make sure to change:
 * location of your corosync-data (so you can keep your configuration between restarts, etc.)
 * hostname 
 * local network information
-** parent (the eithernet device to bind macvlan)
-** ipv4_address
-** subnet
-** ip_range
-** gateway
+   parent (the eithernet device to bind macvlan)  
+   ipv4_address  
+   subnet  
+   ip_range  
+   gateway
 
 ## Running / Deploying:
 
@@ -61,5 +61,5 @@ This container installs & configured a sshd server that permits root logins.  Pr
 
 When I started looking at how to install & configure an external qdevice in a docker container, there was very little information available.   All the info I found was relevant to earlier versions of Proxmox ( <8 ) or didn't work when I tried to deploy the container.  However, I did find the following very useful:
 
-* (Proxmox VE 7 Corosync QDevice in a Docker container)[https://raymii.org/s/tutorials/Proxmox_VE_7_Corosync_QDevice_in_Docker.html]
-* (Dockerized Corosync QNet Daemon)[https://github.com/modelrockettier/docker-corosync-qnetd]
+* [Proxmox VE 7 Corosync QDevice in a Docker container](https://raymii.org/s/tutorials/Proxmox_VE_7_Corosync_QDevice_in_Docker.html)
+* [Dockerized Corosync QNet Daemon](https://github.com/modelrockettier/docker-corosync-qnetd)
