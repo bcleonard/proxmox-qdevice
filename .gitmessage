@@ -1,0 +1,38 @@
+#<type>[optional] summary, imperative, all lower case, don't end with a period
+# type = build, ci, docs, feat, fix, perf, refactor, style, test, chore
+# no more than 50 chars.  #### 50 chars is here: #
+
+# Remember blank line between title and body.
+
+# [body] Explain *what* and *why* (not *how*)
+# Wrap at 72 chars.  ############################### 72 chars is here: #
+
+# Remember blank line between body and footer.
+
+# [footer] 
+
+# How to Write a Git Commit Message
+# https://chris.beams.io/posts/git-commit/
+#
+# 1. We are following Conventional Commits https://conventionalcommits.org
+# 2. We are following the format of:
+#
+#    <type>[optional scope]: <description>
+#
+#    [optional body]
+#
+#    [optional footer(s)]
+#
+# 3. The entire message should be lower case
+# 4. Everything in < > is required
+# 5. Everything in [ ] is optional
+# 6. type = build, ci, docs, feat, fix, perf, refactor, style, test, chore
+# 7. Limit the subject line to 50 characters
+# 8. Do not end the subject line with a period
+# 9. Use the imperative mood in the subject line
+# 10. Wrap the body at 72 characters
+# 11. Use the body to explain what and why vs. how
+# 12. Answer the question: Why have I made these changes?
+# 13. Answer the question: What effect have my changes made?
+# 14. Answer the question: Why was the change needed?
+# 15. Answer the question: What are the changes in reference to?
