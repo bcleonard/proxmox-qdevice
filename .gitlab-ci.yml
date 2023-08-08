@@ -16,7 +16,7 @@ docker-build-master:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE"
     - docker run --rm -t \
-      -v .:/myvol \
+      -v "$(pwd):/myvol" \
       -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' \
       -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md \
       -e PUSHRM_SHORT='my short description' \
@@ -43,7 +43,7 @@ docker-build:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker run --rm -t \
-      -v .:/myvol \
+      -v "$(pwd):/myvol" \
       -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' \
       -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md \
       -e PUSHRM_SHORT='my short description' \
