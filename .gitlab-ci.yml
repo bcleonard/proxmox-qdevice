@@ -1,10 +1,6 @@
 default:
   # Official docker image.
-  image: docker:latest
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
+  image: docker:latest  
   services:
     - name: docker:dind
       alias: docker
@@ -14,6 +10,11 @@ stages:
   - build
   - release
 
+variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+
 build:
   stage: build
   script:
@@ -22,7 +23,7 @@ build:
     - docker push "$CI_REGISTRY_IMAGE"
     - docker logout
 
-#release:
-#  stage: release
-#  script:
-#    - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
+release:
+  stage: release
+  script:
+    - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
