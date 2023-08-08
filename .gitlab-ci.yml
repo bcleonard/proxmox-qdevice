@@ -22,6 +22,13 @@ docker-build-master:
       -e PUSHRM_SHORT='my short description' \
       -e PUSHRM_TARGET=$CI_REGISTRY_IMAGE -e PUSHRM_DEBUG=1 \
       chko/docker-pushrm:1"
+    - docker run --rm -t \
+      -v $(pwd):/myvol \
+      -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' \
+      -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md \
+      -e PUSHRM_SHORT='my short description' \
+      -e PUSHRM_TARGET=docker.io/$CI_REGISTER_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 \
+      chko/docker-pushrm
   only:
     - master
 
@@ -49,5 +56,12 @@ docker-build:
       -e PUSHRM_SHORT='my short description' \
       -e PUSHRM_TARGET=$CI_REGISTRY_IMAGE -e PUSHRM_DEBUG=1 \
       chko/docker-pushrm:1"
+    - docker run --rm -t \
+      -v $(pwd):/myvol \
+      -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' \
+      -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md \
+      -e PUSHRM_SHORT='my short description' \
+      -e PUSHRM_TARGET=docker.io/$CI_REGISTER_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 \
+      chko/docker-pushrm
   except:
     - master
