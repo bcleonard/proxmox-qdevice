@@ -23,7 +23,16 @@ build:
     - docker push "$CI_REGISTRY_IMAGE"
     - docker logout
 
-release:
+pushrm:
   stage: release
-  script:
-    - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
+  image:
+    name: chko/docker-pushrm
+    entrypoint: ["/bin/sh", "-c", "/docker-pushrm"]
+  variables:
+    DOCKER_USER: $CI_REGISTRY_USER
+    DOCKER_PASS: $CI_REGISTRY_PASSWORD
+    PUSHRM_SHORT: Proxmox QDevice in a Container
+    PUSHRM_TARGET: docker.io/$CI_REGISTRY_USER/proxmox-qdevice
+    PUSHRM_DEBUG: 1
+    PUSHRM_FILE: $CI_PROJECT_DIR/README.md
+  script: "/bin/true"
