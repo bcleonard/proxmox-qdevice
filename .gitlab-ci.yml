@@ -16,26 +16,46 @@ docker-build-master:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE"
     - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
+  after_script:
+    - docker logout
   only:
     - master
 
-docker-build:
+docker-build-master:
   # Official docker image.
   image: docker:latest
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-  stage: build
+  stage: deploy
   services:
     - name: docker:dind
       alias: docker
       command: ["--tls=false"]
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
-  except:
+  only:
     - master
+
+#docker-build:
+#  # Official docker image.
+#  image: docker:latest
+#  variables:
+#    DOCKER_HOST: tcp://docker:2375/
+#    DOCKER_DRIVER: overlay2
+#    DOCKER_TLS_CERTDIR: ""
+#  stage: build
+#  services:
+#    - name: docker:dind
+#      alias: docker
+#      command: ["--tls=false"]
+#  before_script:
+#    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#  script:
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+#    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+#    - echo "docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm"
+#    - docker run --rm -t -v $(pwd):/myvol -e DOCKER_USER='$CI_REGISTRY_USER' -e DOCKER_PASS='$CI_REGISTRY_PASSWORD' -e PUSHRM_PROVIDER=dockerhub -e PUSHRM_FILE=/myvol/README.md -e PUSHRM_SHORT='Proxmox QDevice in a Container' -e PUSHRM_TARGET=docker.io/$CI_REGISTRY_USER/proxmox-qdevice -e PUSHRM_DEBUG=1 chko/docker-pushrm
+#  except:
+#    - master
