@@ -1,8 +1,11 @@
+Your feature may already be reported!
+Please search on the [issue tracker](../) before creating one.
+
 ---
-name: Feature request
+name: \U0001F680 Feature request
 about: Suggest an idea for this project
-title: ''
-labels: ''
+title: '< add one liner description of the feature being requested >'
+labels: ["enhancement"]'
 assignees: ''
 
 ---
