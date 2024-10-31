@@ -21,6 +21,8 @@ RUN apt update \
     && apt -y autoremove \
     && apt clean all
 
+RUN mkdir -p /run/sshd
+
 COPY supervisord.conf /etc/supervisord.conf
 
 EXPOSE 22
