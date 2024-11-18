@@ -1,20 +1,20 @@
 # Proxmox Qdevice
 
-This repository will allow you build and deploy a docker container for use with a proxmox cluster as an external qdevice.  Properly configured proxmox clusters require an odd number servers in the cluster.   In the event that you have an even number of proxmox servers (like 2, such as I have), you need an another device to vote.   Proxmox suports this by allow you to configure a qdevice for an external vote.
+This repository will allow you build and deploy a docker container for use with a proxmox cluster as an external qdevice.  Properly configured proxmox clusters require an odd number servers in the cluster.   In the event that you have an even number of proxmox servers (like 2, such as I have), you need an another device to vote.   Proxmox supports this by allow you to configure a qdevice for an external vote.
 
 Normally running an even number of servers in a cluster isn't a problem, but I've had situations where I've booted both promox servers at the same time.  In that case, the first server to come online doesn't have a quarum (1 of 2) so the images won't start.  The 2nd server will (2 of 2).  With an external qdevice thats already up, the first device to come up has quarom (2 of 3).  
 
 For more information on proxmmox clusters, external qdevices, and how to configure/use them, go [here](https://pve.proxmox.com/wiki/Cluster_Manager#_corosync_external_vote_support).
 
-Run this container on a device that is *NOT* a virtual instance on one of your proxmox servers.   Run it on a 3rd physical device.
+Run this container on a device that is *NOT* a virtual instance on one of your proxmox servers.
+
+# Wiki
+
+A wiki has been created [here](https://github.com/bcleonard/proxmox-qdevice/wiki) which contains all kinds of information.
 
 ## Requirements/Prerequisites
 
-* [Docker](https://www.docker.com/)
-* [Docker Compose](https://docs.docker.com/compose/)
-* internet connection
-* A proxmox cluster with an even number of servers
-* a dedicated IP address in your network to bind the container too.
+Please check the [wiki](https://github.com/bcleonard/proxmox-qdevice/wiki#pre-requisites) for the most up to date information.
 
 ## Install:
 
@@ -51,7 +51,7 @@ or cut and past the docker-compose.yml into portainer.io as a stack and then dep
 
 ## Problems & Troubleshooting:
 
-* none identified at this time.
+* You can find the most up to date information in issues, known problems and troublshooting by reviewing the [issues](https://github.com/bcleonard/proxmox-qdevice/issues) and what is [not supported](https://github.com/bcleonard/proxmox-qdevice/wiki#whats-not-supported).
 
 ## Security Implications:
 
