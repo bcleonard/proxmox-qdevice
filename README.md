@@ -28,7 +28,7 @@ Modify the docker-compose.yml file.   Make sure to change:
 * location of your corosync-data (so you can keep your configuration between restarts, etc.)
 * hostname 
 * local network information
-   parent (the eithernet device to bind macvlan)  
+   parent (the ethernet device to bind macvlan)  
    ipv4_address  
    subnet  
    ip_range  
