@@ -18,7 +18,7 @@ Please check the [wiki](https://github.com/bcleonard/proxmox-qdevice/wiki#pre-re
 
 ## Install:
 
-This repo is designed from either docker compose or a container manager, like Portainer.
+This repo is designed to run from either docker compose or a container manager, like Portainer.
 
 ## Configuration:
 
@@ -44,22 +44,30 @@ or cut and past the docker-compose.yml into portainer.io as a stack and then dep
 
 ## Tested as working on:
 
-* Debian 12 (bookworm) (Virtual Instance)
-* Docker version 24.0.5, build ced0996
-* Proxmox v8.0.4
-* Portainer Community Edition v2.18.4
+* Debian 12 (bookworm) (all point releases up to 12) (Virtual Instance)
+* Docker version 24.0.5, build ced0996 (and higher)
+* Proxmox v8.0.4 (and higher)
+* Portainer Community Edition v2.18.4 (and higher)
 
 ## Problems & Troubleshooting:
 
-* You can find the most up to date information in issues, known problems and troublshooting by reviewing the [issues](https://github.com/bcleonard/proxmox-qdevice/issues) and what is [not supported](https://github.com/bcleonard/proxmox-qdevice/wiki#whats-not-supported).
+* You can find the most up to date information on issues, known problems and troubleshooting by reviewing the [issues](https://github.com/bcleonard/proxmox-qdevice/issues) and what is [not supported](https://github.com/bcleonard/proxmox-qdevice/wiki#whats-not-supported).
 
 ## Security Implications:
 
-This container installs & configured a sshd server that permits root logins.  Proxmox runs in the same configuration.   You specify the root password in the docker-compose.yml or the stack.   If you hardcode it, you will expose the password.   You have been warned.
+This container installs and configures a sshd server that permits root logins.  Proxmox runs in the same configuration.  You specify the root password in the docker-compose.yml or the stack.   If you hardcode it, you will expose the password.  You have been warned.
+
+> [!IMPORTANT]
+>
+> #### A note on `latest` and `beta`:
+>
+> It is not recommended to use the `latest` (`bcleonard/proxmox-qdevice`, `bcleonard/proxmox-qdevice:latest`) or `beta` (`bcleonard/proxmox-qdevice:beta`) tag for production setups.
+>
+> [Those tags point](https://hub.docker.com/r/bcleonard/proxmox-qdevice/tags) might not point to the latest commit in the `master` branch. They do not carry any promise of stability, and using them will probably put your proxmox-qdevice setup at risk of experiencing uncontrolled updates to non backward compatible versions (or versions with breaking changes). You should always specify the version you want to use explicitly to ensure your setup doesn't break when the image is updated.
 
 ## Acknowledgements:
 
-When I started looking at how to install & configure an external qdevice in a docker container, there was very little information available.   All the info I found was relevant to earlier versions of Proxmox ( <8 ) or didn't work when I tried to deploy the container.  However, I did find the following very useful:
+When I started looking at how to install & configure an external qdevice in a docker container, there was very little information available.   All the info I found was relevant to earlier versions of Proxmox ( < 8 ) or didn't work when I tried to deploy the container.  However, I did find the following very useful:
 
 * [Proxmox VE 7 Corosync QDevice in a Docker container](https://raymii.org/s/tutorials/Proxmox_VE_7_Corosync_QDevice_in_Docker.html)
 * [Dockerized Corosync QNet Daemon](https://github.com/modelrockettier/docker-corosync-qnetd)
