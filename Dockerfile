@@ -28,5 +28,5 @@ COPY supervisord.conf /etc/supervisord.conf
 EXPOSE 22
 EXPOSE 5403
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
