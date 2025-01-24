@@ -59,13 +59,13 @@ This container installs and configures a sshd server that permits root logins.  
 
 > [!IMPORTANT]
 >
-> #### A note on `latest` and `beta`:
+> ### A note on `latest` and `beta`:
 >
 > It is not recommended to use the `latest` (`bcleonard/proxmox-qdevice`, `bcleonard/proxmox-qdevice:latest`) or `beta` (`bcleonard/proxmox-qdevice:beta`) tag for production setups.
 >
 > [Those tags point](https://hub.docker.com/r/bcleonard/proxmox-qdevice/tags) might not point to the latest commit in the `master` branch. They do not carry any promise of stability, and using them will probably put your proxmox-qdevice setup at risk of experiencing uncontrolled updates to non backward compatible versions (or versions with breaking changes). You should always specify the version you want to use explicitly to ensure your setup doesn't break when the image is updated.
 
-#### Acknowledgements:
+### Acknowledgements:
 
 When I started looking at how to install & configure an external qdevice in a docker container, there was very little information available.   All the info I found was relevant to earlier versions of Proxmox ( < 8 ) or didn't work when I tried to deploy the container.  However, I did find the following very useful:
 
