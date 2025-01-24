@@ -55,7 +55,22 @@ or cut and past the docker-compose.yml into portainer.io as a stack and then dep
 
 ## Security Implications:
 
-This container installs and configures a sshd server that permits root logins.  Proxmox runs in the same configuration.  You specify the root password in the docker-compose.yml or the stack.   If you hardcode it, you will expose the password.  You have been warned.
+This container installs and configures a sshd server that permits root logins.  Proxmox runs in the same configuration.  Upon startup, if the environment variable **NEW_ROOT_PASSWORD** exists the root password will be set to that upon boot.   You can specify what the root password should be setting the value of **NEW_ROOT_PASSWORD** to a password in one of the following ways:
+You can set the root password in one of the following ways:
+
+1) If you are using a container manager, such as portainer, set the environment variable **NEW_ROOT_PASSWORD** to you root password.  This variable should get passed to the container.
+2) Follow one of the Docker provided ways documented in how to [Set environment variables within your container's environment](https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/).  Please note that one of the ways described is setting the password in the docker-compose.yml (or the stack) in the environment section.   If you hardcode the password like this, you can expose the password.  You have been warned.
+
+An alternative would to **NOT SET** the password at all and change it after the container is running.  To change the password after the container has started, do the following:
+
+```bash
+sudo docker exec -it proxmox-qdevice /bin/bash
+root@proxmox-qdevice:/# passwd
+New password:
+Retype new password:
+passwd: password updated successfully
+root@proxmox-qdevice:/# exit
+```
 
 > [!IMPORTANT]
 >

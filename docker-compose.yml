@@ -7,7 +7,6 @@ services:
       - "22:22"
       - "5403:5403"
     environment:
-      - "NEW_ROOT_PASSWORD=CHANGEME"
     volumes:
       - /run/sshd
       - <MY LOCAL STORAGE>:/etc/corosync
