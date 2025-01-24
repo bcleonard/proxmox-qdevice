@@ -58,11 +58,11 @@ or cut and past the docker-compose.yml into portainer.io as a stack and then dep
 This container installs and configures a sshd server that permits root logins.  Proxmox runs in the same configuration.  Upon startup, if the environment variable **NEW_ROOT_PASSWORD** exists the root password will be set to the value of that variable upon boot.   You can specify what the root password should be setting the value of **NEW_ROOT_PASSWORD** to a password in one of the following ways:
 
 1) If you are using a container manager, such as portainer, set the environment variable **NEW_ROOT_PASSWORD** to your specified root password.  This variable should get passed to the container.
-2) Follow one of the Docker provided ways documented in how to [Set environment variables within your container's environment](https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/).  Please note that one of the ways described is setting the password in the docker-compose.yml (or the stack) in the environment section (i.e. hardcoding it).   If you hardcode the password like this, you can expose the password.  You have been warned.
+2) Follow one of the Docker provided ways documented in how to ["Set environment variables within your container's environment"](https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/).  Please note that one of the ways described is setting the password in the docker-compose.yml (or the stack) in the environment section (i.e. hardcoding it).   If you hardcode the password like this, you can expose the password.  You have been warned.
 
 Please note that all of the ways listed above to set the environment above should survive the recreation of the container.
 
-An alternative would to **NOT SET** the password at all and change it after the container is running.  Please note that this method will not survive the recreation of the container.  This means you have to change the passwor manually every time you upgrade.  To change the password after the container has started, do the following:
+An alternative would be to **NOT SET** the password at all and change it after the container has started and is running.  Please note that this method will not survive the recreation of the container.  This means you have to change the passwor manually every time you upgrade and/or recreate the container.  To change the password after the container has started, do the following:
 
 ```bash
 sudo docker exec -it proxmox-qdevice /bin/bash
