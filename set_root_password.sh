@@ -1,3 +1,6 @@
 #!/bin/sh -x
 
-echo "root:${NEW_ROOT_PASSWORD}" | chpasswd
+if [ ! -z ${NEW_ROOT_PASSWORD+x} ]
+then
+  echo "root:${NEW_ROOT_PASSWORD}" | chpasswd
+fi
