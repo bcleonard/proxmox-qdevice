@@ -4,16 +4,16 @@ default:
   services:
     - name: docker:dind
       alias: docker
-      command: ["--tls=false"]
+#      command: ["--tls=false"]
 
 stages:
   - build
   - release
 
 variables:
-    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_HOST: tcp://docker:2376/
+    DOCKER_TLS_CERTDIR: "/certs"
     DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
 
 build:
   stage: build
